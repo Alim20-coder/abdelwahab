@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مؤسسة عبدالوهاب بن معيض بن دعجم للمقاولات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --primary: #1a3a5c;
+  --primary-light: #1e4d7b;
+  --accent: #c8a96e;
+  --accent-light: #e2c99a;
+  --dark: #0d1f33;
+  --darker: #08111e;
+  --mid: #243b55;
+  --light: #f4f1eb;
+  --white: #ffffff;
+  --text-muted: #8fa5bb;
+  --steel: #2c4a6e;
+  --copper: #b8844a;
+  --gradient-main: linear-gradient(135deg, #0d1f33 0%, #1a3a5c 50%, #243b55 100%);
+  --gradient-accent: linear-gradient(135deg, #c8a96e, #e2c99a, #b8844a);
+  --shadow-gold: 0 4px 30px rgba(200,169,110,0.25);
+  --shadow-deep: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  background: var(--darker);
+  color: var(--white);
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--darker); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ===== PRELOADER ===== */
+#preloader {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--darker); z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 20px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.hidden { opacity: 0; visibility: hidden; }
+.loader-logo {
+  font-size: 2rem; font-weight: 900; color: var(--accent);
+  font-family: 'Tajawal', sans-serif;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.loader-bar {
+  width: 200px; height: 3px; background: rgba(255,255,255,0.1);
+  border-radius: 3px; overflow: hidden;
+}
+.loader-bar-inner {
+  height: 100%; width: 0; background: var(--gradient-accent);
+  animation: loadBar 2s ease-in-out forwards;
+}
+@keyframes loadBar { to { width: 100%; } }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  padding: 15px 0;
+  background: transparent;
+  transition: all 0.4s ease;
+}
+.navbar.scrolled {
+  background: rgba(8,17,30,0.97);
+  backdrop-filter: blur(20px);
+  padding: 10px 0;
+  box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(200,169,110,0.2);
+}
+.navbar-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.brand-icon {
+  width: 50px; height: 50px;
+  background: var(--gradient-accent);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; color: var(--dark);
+  font-weight: 900;
+  box-shadow: var(--shadow-gold);
+}
+.brand-text { line-height: 1.2; }
+.brand-name { font-size: 0.85rem; font-weight: 700; color: var(--white); }
+.brand-sub { font-size: 0.65rem; color: var(--accent); letter-spacing: 1px; }
+.nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500; font-size: 0.9rem;
+  margin: 0 5px; padding: 8px 15px !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-link::after {
+  content: ''; position: absolute; bottom: 5px; right: 15px;
+  width: 0; height: 2px; background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: calc(100% - 30px); }
+.nav-link:hover { color: var(--accent) !important; }
+.nav-cta {
+  background: var(--gradient-accent) !important;
+  color: var(--dark) !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  padding: 8px 20px !important;
+  box-shadow: var(--shadow-gold);
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(200,169,110,0.4) !important; }
+.nav-cta::after { display: none !important; }
+.navbar-toggler { border: 1px solid var(--accent); }
+.navbar-toggler-icon { filter: invert(1); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: var(--gradient-main);
+  position: relative;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200,169,110,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(26,58,92,0.6) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a96e' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-grid-lines {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(200,169,110,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+.floating-shapes {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.shape {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,169,110,0.12), transparent);
+  animation: floatAnim 8s ease-in-out infinite;
+}
+.shape:nth-child(1) { width: 400px; height: 400px; top: -100px; left: -100px; animation-delay: 0s; }
+.shape:nth-child(2) { width: 300px; height: 300px; bottom: -50px; right: 10%; animation-delay: 3s; }
+.shape:nth-child(3) { width: 200px; height: 200px; top: 40%; right: 5%; animation-delay: 5s; }
+@keyframes floatAnim {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-content { position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,169,110,0.15);
+  border: 1px solid rgba(200,169,110,0.3);
+  padding: 8px 20px; border-radius: 50px;
+  font-size: 0.8rem; color: var(--accent);
+  margin-bottom: 25px;
+  animation: fadeInDown 0.8s ease both;
+}
+.hero-badge i { animation: spin 3s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900; line-height: 1.2;
+  color: var(--white);
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+.hero-title .highlight {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: 1.1rem; color: var(--text-muted);
+  margin: 20px 0 35px;
+  line-height: 1.8; max-width: 600px;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+.hero-stats {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease 0.5s both;
+}
+.hero-stat .num {
+  font-size: 2.5rem; font-weight: 900;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+}
+.hero-stat .lbl { font-size: 0.8rem; color: var(--text-muted); }
+.hero-btns {
+  display: flex; gap: 15px; flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease 0.6s both;
+}
+.btn-gold {
+  background: var(--gradient-accent);
+  color: var(--dark) !important;
+  font-weight: 700; padding: 14px 35px;
+  border-radius: 12px; border: none;
+  font-size: 1rem; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: var(--shadow-gold);
+  transition: all 0.3s ease;
+}
+.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(200,169,110,0.45); }
+.btn-outline-gold {
+  background: transparent;
+  color: var(--accent) !important;
+  border: 2px solid var(--accent);
+  padding: 13px 35px; border-radius: 12px;
+  font-weight: 600; font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.3s ease;
+}
+.btn-outline-gold:hover { background: rgba(200,169,110,0.1); transform: translateY(-3px); }
+
+.hero-image-side {
+  position: relative; z-index: 2;
+  animation: fadeInRight 1s ease 0.3s both;
+}
+.hero-card-stack { position: relative; }
+.hero-main-card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 24px; padding: 30px;
+  text-align: center;
+  box-shadow: var(--shadow-deep);
+}
+.hero-logo-circle {
+  width: 100px; height: 100px;
+  background: var(--gradient-accent);
+  border-radius: 50%; margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; color: var(--dark);
+  box-shadow: var(--shadow-gold);
+}
+.hero-card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.hero-card-sub { font-size: 0.8rem; color: var(--text-muted); }
+.floating-card {
+  position: absolute;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(200,169,110,0.25);
+  border-radius: 16px; padding: 15px 20px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+.floating-card-1 { top: -20px; right: -20px; animation: floatCard1 4s ease-in-out infinite; }
+.floating-card-2 { bottom: -20px; left: -20px; animation: floatCard2 4s ease-in-out infinite 2s; }
+@keyframes floatCard1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes floatCard2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+.fc-icon { width: 40px; height: 40px; background: var(--gradient-accent); border-radius: 10px; display:flex;align-items:center;justify-content:center; font-size:1.1rem;color:var(--dark); }
+.fc-text .num { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+.fc-text .lbl { font-size: 0.7rem; color: var(--text-muted); }
+
+@keyframes fadeInDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInRight { from{opacity:0;transform:translateX(60px)} to{opacity:1;transform:translateX(0)} }
+@keyframes fadeInLeft { from{opacity:0;transform:translateX(-60px)} to{opacity:1;transform:translateX(0)} }
+
+/* ===== SECTION BASE ===== */
+section { padding: 100px 0; }
+.section-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,169,110,0.1);
+  border: 1px solid rgba(200,169,110,0.3);
+  padding: 6px 18px; border-radius: 50px;
+  font-size: 0.8rem; color: var(--accent);
+  margin-bottom: 15px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900; line-height: 1.3;
+}
+.section-title .gold { color: var(--accent); }
+.section-desc { color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
+.divider {
+  width: 60px; height: 4px;
+  background: var(--gradient-accent);
+  border-radius: 2px; margin: 15px 0;
+}
+
+/* ===== MARQUEE TICKER ===== */
+.ticker-section {
+  padding: 20px 0;
+  background: var(--gradient-accent);
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex; gap: 50px;
+  animation: tickerScroll 30s linear infinite;
+  width: max-content;
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--dark); font-weight: 700; font-size: 0.9rem;
+  white-space: nowrap;
+}
+.ticker-dot { width: 6px; height: 6px; background: var(--dark); border-radius: 50%; }
+@keyframes tickerScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ===== ABOUT ===== */
+.about-section { background: var(--dark); position: relative; overflow: hidden; }
+.about-section::before {
+  content: ''; position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(200,169,110,0.06), transparent);
+  top: -100px; left: -100px; border-radius: 50%;
+}
+.about-img-wrap { position: relative; }
+.about-main-img {
+  width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--mid), var(--steel));
+  height: 450px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; color: var(--accent);
+  position: relative; overflow: hidden;
+  box-shadow: var(--shadow-deep);
+  border: 1px solid rgba(200,169,110,0.2);
+}
+.about-main-img::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(200,169,110,0.1), transparent);
+}
+.about-badge-float {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--gradient-accent);
+  border-radius: 16px; padding: 20px 25px;
+  text-align: center; box-shadow: var(--shadow-gold);
+}
+.about-badge-float .big { font-size: 2rem; font-weight: 900; color: var(--dark); line-height:1; }
+.about-badge-float .sm { font-size: 0.75rem; color: var(--dark); font-weight: 600; }
+.feature-list { list-style: none; }
+.feature-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.feature-list li:last-child { border-bottom: none; }
+.feature-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: rgba(200,169,110,0.15);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 0.9rem;
+}
+.feature-text strong { display: block; font-size: 0.95rem; margin-bottom: 3px; }
+.feature-text span { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ===== SERVICES ===== */
+.services-section { background: var(--darker); position: relative; }
+.services-bg-pattern {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23c8a96e' fill-opacity='0.03'%3E%3Cpath d='M0 0h80v80H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.service-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 35px 25px;
+  height: 100%;
+  transition: all 0.4s ease;
+  position: relative; overflow: hidden;
+  cursor: pointer;
+}
+.service-card::before {
+  content: ''; position: absolute;
+  top: 0; right: 0; width: 0; height: 3px;
+  background: var(--gradient-accent);
+  transition: width 0.4s ease;
+}
+.service-card:hover::before { width: 100%; }
+.service-card:hover {
+  background: rgba(200,169,110,0.06);
+  border-color: rgba(200,169,110,0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.service-icon {
+  width: 70px; height: 70px;
+  background: linear-gradient(135deg, rgba(200,169,110,0.15), rgba(200,169,110,0.05));
+  border: 1px solid rgba(200,169,110,0.2);
+  border-radius: 18px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: var(--accent);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.service-card:hover .service-icon {
+  background: var(--gradient-accent);
+  color: var(--dark); transform: scale(1.1);
+}
+.service-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.service-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+.service-tag {
+  display: inline-block; margin-top: 15px;
+  background: rgba(200,169,110,0.1);
+  border: 1px solid rgba(200,169,110,0.2);
+  color: var(--accent); font-size: 0.75rem;
+  padding: 4px 12px; border-radius: 20px;
+}
+
+/* ===== GALLERY CARDS (57 cards) ===== */
+.gallery-section { background: var(--dark); }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.gallery-card {
+  border-radius: 16px; overflow: hidden;
+  background: var(--mid);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+}
+.gallery-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 50px rgba(0,0,0,0.4); border-color: rgba(200,169,110,0.4); }
+.gallery-img {
+  width: 100%; height: 200px; overflow: hidden;
+  background: var(--steel);
+  position: relative;
+}
+.gallery-img img { width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease; }
+.gallery-card:hover .gallery-img img { transform: scale(1.1); }
+.gallery-img-placeholder {
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--accent);opacity:0.5;
+  background: linear-gradient(135deg, var(--mid), var(--steel));
+}
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,17,30,0.5);
+  opacity: 0; transition: opacity 0.3s ease;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.gallery-card:hover .gallery-overlay { opacity: 1; }
+.gallery-zoom-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--gradient-accent); color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem;
+  transform: scale(0.85); transition: transform 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.gallery-card:hover .gallery-zoom-icon { transform: scale(1); }
+.gallery-lightbox .modal-dialog { max-width: min(1200px, 95vw); margin: 1rem auto; }
+.gallery-lightbox .modal-content {
+  background: rgba(8,17,30,0.95); border: 1px solid rgba(200,169,110,0.25);
+  border-radius: 16px; overflow: hidden;
+}
+.gallery-lightbox .modal-body { padding: 16px; }
+.gallery-lightbox-img {
+  width: 100%; max-height: 85vh; object-fit: contain;
+  border-radius: 8px; display: block; margin: 0 auto;
+}
+.gallery-lightbox .btn-close-lightbox {
+  position: absolute; top: 16px; left: 16px; z-index: 10;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(200,169,110,0.9); border: none; color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; cursor: pointer; transition: transform 0.2s ease;
+}
+.gallery-lightbox .btn-close-lightbox:hover { transform: scale(1.08); }
+
+/* ===== WHY US ===== */
+.why-section { background: var(--darker); }
+.why-card {
+  text-align: center; padding: 40px 25px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px; height: 100%;
+  transition: all 0.4s ease;
+  position: relative; overflow: hidden;
+}
+.why-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 3px;
+  background: var(--gradient-accent);
+  transition: width 0.4s ease;
+}
+.why-card:hover::after { width: 80%; }
+.why-card:hover { transform: translateY(-8px); background: rgba(200,169,110,0.05); border-color: rgba(200,169,110,0.25); }
+.why-icon {
+  font-size: 2.5rem; color: var(--accent);
+  margin-bottom: 20px; display: block;
+}
+.why-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.why-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ===== PROCESS ===== */
+.process-section { background: var(--dark); position: relative; }
+.process-line {
+  position: absolute; top: 50%;
+  left: 10%; width: 80%;
+  height: 2px; background: rgba(200,169,110,0.2);
+  transform: translateY(-50%);
+}
+.process-step { text-align: center; position: relative; z-index: 2; }
+.step-circle {
+  width: 80px; height: 80px;
+  background: var(--gradient-main);
+  border: 3px solid var(--accent);
+  border-radius: 50%; margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: var(--accent);
+  box-shadow: var(--shadow-gold);
+  transition: all 0.3s ease;
+}
+.process-step:hover .step-circle {
+  background: var(--gradient-accent);
+  color: var(--dark); transform: scale(1.1);
+}
+.step-num {
+  position: absolute; top: -8px; right: -8px;
+  width: 28px; height: 28px;
+  background: var(--accent); color: var(--dark);
+  border-radius: 50%; font-size: 0.75rem; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-title { font-weight: 700; margin-bottom: 8px; }
+.step-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ===== TEAMS ===== */
+.team-section { background: var(--darker); }
+.team-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 30px; text-align: center;
+  transition: all 0.4s ease; height: 100%;
+}
+.team-card:hover { background: rgba(200,169,110,0.06); border-color: rgba(200,169,110,0.3); transform: translateY(-6px); }
+.team-avatar {
+  width: 90px; height: 90px;
+  background: var(--gradient-accent);
+  border-radius: 50%; margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: var(--dark);
+}
+.team-name { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+.team-role { font-size: 0.8rem; color: var(--accent); margin-bottom: 12px; }
+.team-skills { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.skill-tag {
+  background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.2);
+  color: var(--text-muted); font-size: 0.7rem;
+  padding: 3px 10px; border-radius: 20px;
+}
+
+/* ===== ARTICLES ===== */
+.articles-section { background: var(--dark); }
+.article-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; overflow: hidden;
+  transition: all 0.4s ease; height: 100%;
+}
+.article-card:hover { transform: translateY(-6px); border-color: rgba(200,169,110,0.3); box-shadow: var(--shadow-deep); }
+.article-img {
+  height: 200px;
+  background: linear-gradient(135deg, var(--mid), var(--steel));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; color: var(--accent); position: relative;
+}
+.article-cat {
+  position: absolute; top: 15px; right: 15px;
+  background: var(--gradient-accent);
+  color: var(--dark); font-size: 0.7rem; font-weight: 700;
+  padding: 4px 12px; border-radius: 6px;
+}
+.article-body { padding: 25px; }
+.article-meta { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; display: flex; gap: 15px; flex-wrap: wrap; }
+.article-title { font-size: 1rem; font-weight: 700; margin-bottom: 10px; line-height: 1.5; }
+.article-excerpt { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; }
+.read-more { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+.read-more:hover { color: var(--accent-light); }
+
+/* ===== STATS ===== */
+.stats-section {
+  background: var(--gradient-main);
+  padding: 80px 0;
+  position: relative; overflow: hidden;
+}
+.stats-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a96e' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.stat-box { text-align: center; position: relative; z-index: 2; }
+.stat-box .number {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900; line-height: 1;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-box .label { font-size: 0.9rem; color: rgba(255,255,255,0.7); margin-top: 8px; }
+.stat-sep { width: 1px; background: rgba(200,169,110,0.3); height: 80px; margin: auto; }
+
+/* ===== CONTACT ===== */
+.contact-section { background: var(--darker); }
+.contact-info-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 35px;
+  height: 100%;
+}
+.contact-item {
+  display: flex; align-items: center; gap: 15px;
+  padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.contact-item:last-child { border-bottom: none; }
+.contact-icon {
+  width: 50px; height: 50px; flex-shrink: 0;
+  background: rgba(200,169,110,0.15);
+  border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: var(--accent);
+}
+.contact-item-label { font-size: 0.75rem; color: var(--text-muted); }
+.contact-item-val { font-size: 0.95rem; font-weight: 600; }
+.contact-item-val a { color: var(--white); text-decoration: none; }
+.contact-item-val a:hover { color: var(--accent); }
+
+.form-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 40px;
+}
+.form-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; display: block; }
+.form-control, .form-select {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: var(--white) !important;
+  border-radius: 12px !important;
+  padding: 13px 18px !important;
+  font-size: 0.9rem !important;
+  font-family: 'Cairo', sans-serif !important;
+  transition: all 0.3s ease !important;
+}
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 3px rgba(200,169,110,0.25) !important;
+  border-color: var(--accent) !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+.form-control::placeholder { color: rgba(255,255,255,0.3) !important; }
+.form-select option { background: var(--dark); color: var(--white); }
+.btn-submit {
+  width: 100%;
+  background: var(--gradient-accent);
+  color: var(--dark); font-weight: 700;
+  padding: 15px; border: none;
+  border-radius: 12px; font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer; transition: all 0.3s ease;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: var(--shadow-gold);
+}
+.btn-submit:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(200,169,110,0.45); }
+.whatsapp-btn {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: #25D366; color: white; font-weight: 700;
+  padding: 15px; border-radius: 12px;
+  text-decoration: none; font-size: 1rem;
+  margin-top: 15px; transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+}
+.whatsapp-btn:hover { transform: translateY(-3px); color: white; box-shadow: 0 12px 30px rgba(37,211,102,0.4); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--darker);
+  border-top: 1px solid rgba(200,169,110,0.15);
+  padding: 60px 0 30px;
+}
+.footer-brand { margin-bottom: 20px; }
+.footer-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+.footer-title { font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 20px; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; display: flex; align-items: center; gap: 8px; }
+.footer-links a::before { content: '›'; color: var(--accent); }
+.footer-links a:hover { color: var(--accent); }
+.footer-contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.85rem; }
+.footer-contact-item i { color: var(--accent); width: 16px; }
+.footer-divider { border-color: rgba(255,255,255,0.08); margin: 30px 0; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+.copyright { font-size: 0.8rem; color: var(--text-muted); }
+.footer-credit {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-credit a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+.footer-credit a:hover { color: #fff; }
+.social-links { display: flex; gap: 10px; }
+.social-link {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); text-decoration: none;
+  transition: all 0.3s ease;
+}
+.social-link:hover { background: var(--gradient-accent); color: var(--dark); border-color: transparent; transform: translateY(-3px); }
+
+/* ===== BACK TO TOP ===== */
+#backTop {
+  position: fixed; bottom: 30px; left: 30px; z-index: 999;
+  width: 48px; height: 48px;
+  background: var(--gradient-accent);
+  color: var(--dark); border: none;
+  border-radius: 12px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; box-shadow: var(--shadow-gold);
+  opacity: 0; transform: translateY(20px);
+  transition: all 0.3s ease;
+  font-family: 'Cairo', sans-serif;
+}
+#backTop.show { opacity: 1; transform: translateY(0); }
+#backTop:hover { transform: translateY(-4px); }
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float {
+  position: fixed; bottom: 30px; right: 30px; z-index: 999;
+  width: 58px; height: 58px;
+  background: #25D366; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.6rem;
+  text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  transition: all 0.3s ease; animation: waPulse 3s ease infinite;
+}
+.wa-float:hover { color: white; transform: scale(1.1); }
+@keyframes waPulse {
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4)}
+  50%{box-shadow:0 4px 35px rgba(37,211,102,0.7),0 0 0 10px rgba(37,211,102,0.1)}
+}
+
+/* ===== MODAL ===== */
+.modal-content { background: var(--dark); border: 1px solid rgba(200,169,110,0.3); border-radius: 20px; }
+.modal-header { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.modal-title { font-weight: 700; color: var(--accent); }
+.btn-close { filter: invert(1); }
+.toast-container { z-index: 9999; }
+.custom-toast {
+  background: var(--mid); border: 1px solid rgba(200,169,110,0.3);
+  color: var(--white); border-radius: 12px;
+  padding: 15px 20px; box-shadow: var(--shadow-deep);
+}
+
+/* ===== PROMISE / CTA / TESTIMONIALS ===== */
+.promise-banner {
+  padding: 72px 0;
+  background: linear-gradient(135deg, rgba(26,58,92,0.4) 0%, rgba(8,17,30,0.95) 50%, rgba(36,59,85,0.5) 100%);
+  border-top: 1px solid rgba(200,169,110,0.15);
+  border-bottom: 1px solid rgba(200,169,110,0.15);
+  position: relative; overflow: hidden;
+}
+.promise-banner::before {
+  content: '\201C'; position: absolute; top: 16px; right: 8%;
+  font-size: 8rem; line-height: 1; color: rgba(200,169,110,0.12); font-family: Georgia, serif;
+}
+.promise-quote {
+  font-size: clamp(1.15rem, 2.5vw, 1.65rem); font-weight: 600; line-height: 1.9;
+  color: var(--white); max-width: 880px; margin: 0 auto 24px; text-align: center;
+}
+.promise-quote .gold { color: var(--accent); }
+.promise-sub {
+  text-align: center; color: var(--text-muted); font-size: 1rem; max-width: 720px; margin: 0 auto;
+}
+.values-strip {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;
+}
+.value-pill {
+  text-align: center; padding: 32px 24px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(200,169,110,0.15);
+  border-radius: 16px; transition: all 0.35s ease;
+}
+.value-pill:hover {
+  border-color: rgba(200,169,110,0.4); background: rgba(200,169,110,0.06);
+  transform: translateY(-4px);
+}
+.value-pill i { font-size: 2rem; color: var(--accent); margin-bottom: 16px; display: block; }
+.value-pill h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.value-pill p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
+.cta-band {
+  padding: 64px 0;
+  background: var(--gradient-main);
+  border-top: 1px solid rgba(200,169,110,0.2);
+  border-bottom: 1px solid rgba(200,169,110,0.2);
+  text-align: center;
+}
+.cta-band h3 { font-size: clamp(1.35rem, 3vw, 2rem); font-weight: 800; margin-bottom: 16px; }
+.cta-band p { color: var(--text-muted); max-width: 640px; margin: 0 auto 32px; font-size: 1.05rem; line-height: 1.8; }
+.cta-band-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.client-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+.client-card {
+  padding: 28px 20px; text-align: center; border-radius: 16px;
+  background: var(--mid); border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.35s ease;
+}
+.client-card:hover { border-color: rgba(200,169,110,0.35); transform: translateY(-6px); }
+.client-card .cc-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.client-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+.client-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+.testimonials-section { background: var(--darker); }
+.testimonial-card {
+  padding: 32px; border-radius: 16px; height: 100%;
+  background: var(--mid); border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.testimonial-card::before {
+  content: '\201C'; position: absolute; top: 16px; left: 24px;
+  font-size: 3rem; color: rgba(200,169,110,0.25); line-height: 1;
+}
+.testimonial-text {
+  font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.9);
+  margin-bottom: 24px; padding-top: 24px;
+}
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--gradient-accent); color: var(--dark);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem;
+}
+.testimonial-name { font-weight: 700; font-size: 0.9rem; }
+.testimonial-role { font-size: 0.75rem; color: var(--accent); }
+.testimonial-stars { color: var(--accent); font-size: 0.8rem; margin-bottom: 12px; }
+.gallery-intro-note {
+  text-align: center; margin-top: 40px; padding: 32px;
+  background: rgba(200,169,110,0.06); border: 1px dashed rgba(200,169,110,0.3);
+  border-radius: 16px; max-width: 800px; margin-left: auto; margin-right: auto;
+}
+.gallery-intro-note p { margin: 0; color: var(--text-muted); font-size: 1rem; line-height: 1.8; }
+.gallery-intro-note strong { color: var(--accent); }
+.hero-tagline {
+  font-size: 0.9rem; color: var(--accent-light); margin-top: 16px;
+  padding-top: 16px; border-top: 1px solid rgba(200,169,110,0.2);
+  line-height: 1.7; font-style: italic;
+}
+.about-highlight {
+  padding: 24px; margin-top: 24px; border-radius: 12px;
+  background: rgba(200,169,110,0.08); border-right: 4px solid var(--accent);
+  font-size: 0.95rem; line-height: 1.85; color: rgba(255,255,255,0.88);
+}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.7s ease; }
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.7s ease; }
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px) {
+  .hero { padding-top: 100px; }
+  .hero-stats { gap: 20px; }
+  .stat-sep { display: none; }
+  .process-line { display: none; }
+  footer .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="loader-logo">⚙️ دعجم للمقاولات</div>
+  <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+  <div style="font-size:0.8rem;color:var(--text-muted)">جاري تحميل الموقع...</div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <div class="brand-icon">🏗️</div>
+      <div class="brand-text">
+        <div class="brand-name">مؤسسة دعجم للمقاولات</div>
+        <div class="brand-sub">DAJM CONTRACTING EST.</div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#about">من نحن</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">أعمالنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="#team">فريقنا</a></li>
+        <li class="nav-item"><a class="nav-link" href="#articles">مقالات</a></li>
+      </ul>
+      <a href="#contact" class="btn-gold nav-cta text-decoration-none">
+        <i class="fas fa-paper-plane"></i> تواصل معنا
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker-section" style="margin-top:70px">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span> دهانات داخلية وخارجية احترافية</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> عزل أسطح وحمامات وخزانات مياه</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> تركيب بلاط وأرضيات فاخرة</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> دهانات أبواب متخصصة</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> حمامات سباحة</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> فريق فنيين خبراء</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> جدة - المملكة العربية السعودية</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> معاينة مجانية وعرض سعر شفاف</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> ضمان مكتوب على جميع الأعمال</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> مواد عالمية معتمدة — جودة تدوم</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> من الفيلا إلى المجمع التجاري — نحن معك</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> دهانات داخلية وخارجية احترافية</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> عزل أسطح وحمامات وخزانات مياه</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> تركيب بلاط وأرضيات فاخرة</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> دهانات أبواب متخصصة</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> حمامات سباحة</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> فريق فنيين خبراء</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> جدة - المملكة العربية السعودية</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> معاينة مجانية وعرض سعر شفاف</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> ضمان مكتوب على جميع الأعمال</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> مواد عالمية معتمدة — جودة تدوم</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> من الفيلا إلى المجمع التجاري — نحن معك</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home" style="margin-top:-70px;padding-top:70px">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fas fa-star fa-spin"></i> شريكك الموثوق في التشطيب والبناء بجدة</div>
+          <h1 class="hero-title">
+            <span class="highlight">مؤسسة عبدالوهاب</span><br>
+            بن معيض بن دعجم<br>
+            <span style="font-size:0.7em;color:rgba(255,255,255,0.7)">للمقاولات والدهانات</span>
+          </h1>
+          <p class="hero-subtitle">
+            من أول فرشة دهان إلى آخر بلطة — نحوّل مشروعك إلى واقع يليق بك. خدمات مقاولات متكاملة: دهانات داخلية وخارجية، عزل أسطح وخزانات وحمامات سباحة، أرضيات فاخرة، وأبواب كأنها جديدة. في جدة، اسمنا يسبقنا في الجودة والأمانة.
+          </p>
+          <p class="hero-tagline">«لا نبيع وعوداً — نسلّم نتائج تفخر بها أمام ضيوفك وجيرانك.»</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="num">+500</div><div class="lbl">مشروع منجز</div></div>
+            <div class="hero-stat"><div class="num">+15</div><div class="lbl">سنة خبرة</div></div>
+            <div class="hero-stat"><div class="num">100%</div><div class="lbl">رضا العملاء</div></div>
+          </div>
+          <div class="hero-btns">
+            <a href="#contact" class="btn-gold"><i class="fas fa-paint-brush"></i> اطلب عرض سعر</a>
+            <a href="#gallery" class="btn-outline-gold"><i class="fas fa-images"></i> شاهد أعمالنا</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="hero-image-side">
+          <div class="hero-card-stack">
+            <div class="hero-main-card">
+              <div class="hero-logo-circle">🏗️</div>
+              <div class="hero-card-title">مؤسسة دعجم للمقاولات</div>
+              <div class="hero-card-sub">حيث تلتقي الحرفة بالثقة — جدة، المملكة العربية السعودية</div>
+              <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                <span style="background:rgba(200,169,110,0.15);color:var(--accent);padding:5px 14px;border-radius:20px;font-size:0.75rem">✓ مرخّص</span>
+                <span style="background:rgba(200,169,110,0.15);color:var(--accent);padding:5px 14px;border-radius:20px;font-size:0.75rem">✓ معتمد</span>
+                <span style="background:rgba(200,169,110,0.15);color:var(--accent);padding:5px 14px;border-radius:20px;font-size:0.75rem">✓ موثوق</span>
+              </div>
+              <div style="margin-top:20px;font-size:0.75rem;color:var(--text-muted)">س.ت: 4030140651</div>
+            </div>
+            <div class="floating-card floating-card-1">
+              <div class="fc-icon">🎨</div>
+              <div class="fc-text"><div class="num">+50</div><div class="lbl">نوع دهان</div></div>
+            </div>
+            <div class="floating-card floating-card-2">
+              <div class="fc-icon">⭐</div>
+              <div class="fc-text"><div class="num">5.0</div><div class="lbl">تقييم العملاء</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 reveal-left">
+        <div class="about-img-wrap">
+          <div class="about-main-img">
+            <i class="fas fa-hard-hat" style="position:relative;z-index:1"></i>
+          </div>
+          <div class="about-badge-float">
+            <div class="big">15+</div>
+            <div class="sm">سنة خبرة</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal-right">
+        <div class="section-badge"><i class="fas fa-info-circle"></i> من نحن</div>
+        <h2 class="section-title">شركة رائدة في عالم <span class="gold">المقاولات والدهانات</span></h2>
+        <div class="divider"></div>
+        <p class="section-desc mb-4">
+          مؤسسة عبدالوهاب بن معيض بن دعجم للمقاولات — عنوانٌ للثقة في جدة منذ أكثر من خمسة عشر عاماً. نحن لا ننفّذ «طلاءً» فحسب؛ نبني لك بيئةً آمنة وجميلة تدوم: جدران تتنفس أناقة، أسطح محمية من المطر والحر، وأرضيات تتحمّل الحياة اليومية بلا خدش.
+        </p>
+        <p class="section-desc mb-4">
+          كل مشروع يمرّ بإشراف مباشر، ومواد مختارة بعناية، وفريق لا يغادر الموقع حتى تكون راضياً. هذا ما جعل مئات العائلات والشركات في جدة تختارنا مراراً — لأننا نؤمن أن منزلك يستحق أفضل من يمسّه.
+        </p>
+        <div class="about-highlight">
+          <strong>وعدنا لك:</strong> شفافية في السعر، دقة في التنفيذ، وضمانٌ مكتوبٌ يحمي استثمارك — لأن سمعتنا أغلى من أي عقد.
+        </div>
+        <ul class="feature-list">
+          <li>
+            <div class="feature-icon"><i class="fas fa-paint-roller"></i></div>
+            <div class="feature-text">
+              <strong>فريق متخصص من المعلمين</strong>
+              <span>معلمون خبراء في الدهانات الداخلية والخارجية بكافة أنواعها وتقنياتها الحديثة</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="feature-text">
+              <strong>عزل احترافي متكامل</strong>
+              <span>نظام عزل شامل للأسطح والحمامات والخزانات وحمامات السباحة بأحدث المواد العازلة</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+            <div class="feature-text">
+              <strong>ترخيص رسمي ومعتمد</strong>
+              <span>مرخصون من الهيئة العامة للزكاة والضريبة ومسجلون في السجل التجاري السعودي</span>
+            </div>
+          </li>
+          <li>
+            <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="feature-text">
+              <strong>خدمات متكاملة في جدة</strong>
+              <span>نغطي جميع أحياء ومناطق مدينة جدة بأسرع وقت وأعلى جودة</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row align-items-center text-center g-4">
+      <div class="col-6 col-md-3 reveal"><div class="stat-box"><div class="number" data-target="500">0</div><div class="label">مشروع منجز بنجاح</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-box"><div class="number" data-target="15">0</div><div class="label">سنة من الخبرة</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-box"><div class="number" data-target="200">0</div><div class="label">عميل راضٍ</div></div></div>
+      <div class="col-6 col-md-3 reveal"><div class="stat-box"><div class="number" data-target="50">0</div><div class="label">فني ومعلم متخصص</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE BANNER -->
+<section class="promise-banner">
+  <div class="container reveal">
+    <p class="promise-quote">
+      في عالم المقاولات، <span class="gold">التفاصيل الصغيرة</span> هي التي تصنع الفرق الكبير — ونحن نعيش على هذا المبدأ في كل متر ندهنه وكل سطح نعزله.
+    </p>
+    <p class="promise-sub">
+      من فيلا الأحلام إلى واجهة عمارة تجارية — نفس الشغف، نفس المعايير، ونفس الالتزام: أن يخرج مشروعك أجمل مما تخيّلته، وفي الوقت الذي اتفقنا عليه.
+    </p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-bg-pattern"></div>
+  <div class="container position-relative">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-tools"></i> خدماتنا</div>
+      <h2 class="section-title">خدمات <span class="gold">شاملة ومتكاملة</span> لكل مشاريعك</h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:680px">حلٌ واحد لكل احتياجات تشطيب منزلك أو مشروعك — لا حاجة لتعدد المقاولين ولا لتضييع وقتك. فريقنا يغطي الدهان، العزل، الأرضيات، الأبواب، والديكور تحت سقف واحد بمعايير موحّدة وجودة لا تتجزأ.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-paint-roller"></i></div>
+          <div class="service-title">الدهانات الداخلية</div>
+          <div class="service-desc">تنفيذ أعمال الدهانات الداخلية لجميع أنواع المساحات — شقق، فلل، مكاتب، محلات — بأحدث الألوان والتقنيات العالمية التي تضيف رونقاً وجمالاً استثنائياً لمساحتك.</div>
+          <span class="service-tag">دهانات داخلية</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-building"></i></div>
+          <div class="service-title">الدهانات الخارجية</div>
+          <div class="service-desc">حماية وتجميل واجهات المباني بأحدث دهانات الواجهات المقاومة للحرارة والرطوبة والأشعة فوق البنفسجية، مع ضمان طول عمر الطلاء ومقاومته للعوامل الجوية.</div>
+          <span class="service-tag">دهانات خارجية</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-home"></i></div>
+          <div class="service-title">عزل الأسطح</div>
+          <div class="service-desc">تنفيذ أنظمة العزل الحراري والمائي للأسطح بمواد عالية الجودة تضمن حماية المبنى من تسربات الأمطار والرطوبة وحرارة الشمس لسنوات طويلة.</div>
+          <span class="service-tag">عزل أسطح</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-tint"></i></div>
+          <div class="service-title">عزل الحمامات والخزانات</div>
+          <div class="service-desc">معالجة وعزل الحمامات وخزانات المياه بمواد صحية معتمدة مقاومة للتسريب والبكتيريا، لضمان سلامة المياه ونظافة الأسطح مدى الحياة.</div>
+          <span class="service-tag">عزل مائي</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-swimming-pool"></i></div>
+          <div class="service-title">عزل حمامات السباحة</div>
+          <div class="service-desc">تخصص نادر في عزل حمامات السباحة بأحدث مواد البوليمر والإيبوكسي المقاومة لأعلى نسب الكلور والأحماض، مع إنهاء فاخر يعطي مظهراً احترافياً.</div>
+          <span class="service-tag">حمامات سباحة</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-th-large"></i></div>
+          <div class="service-title">تركيب البلاط والأرضيات</div>
+          <div class="service-desc">تركيب جميع أنواع البلاط والأرضيات من سيراميك وبورسلان ورخام وباركيه بدقة متناهية وتشطيب احترافي يرقى لأعلى المعايير العالمية.</div>
+          <span class="service-tag">أرضيات وبلاط</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-door-open"></i></div>
+          <div class="service-title">دهانات الأبواب المتخصصة</div>
+          <div class="service-desc">فريق متخصص حصرياً في دهانات الأبواب بجميع أنواعها (خشب، حديد، ألمنيوم) بتقنيات إخفاء الخدوش والتجديد الكامل والطلاء المقاوم للبلل والخدش.</div>
+          <span class="service-tag">دهانات أبواب</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="service-title">أعمال الجبس والديكور</div>
+          <div class="service-desc">تنفيذ أعمال الجبس المزخرف والأسقف المستعارة والديكورات الداخلية الحديثة والكلاسيكية بأيدي معلمين متخصصين يحولون مساحتك إلى تحفة فنية.</div>
+          <span class="service-tag">ديكور وجبس</span>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+          <div class="service-title">الدهانات التزيينية الخاصة</div>
+          <div class="service-desc">تقنيات دهانات فريدة ومميزة مثل الدهان البندقي، والدهان الملمسي، والرسم الجداري الاحترافي، والطباعة على الجدران لإضفاء شخصية استثنائية على مساحتك.</div>
+          <span class="service-tag">دهانات تزيينية</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="container reveal">
+    <h3>مشروعك يستحق مقاولاً <span class="gold">يُحسّن مسؤوليته</span> — لا يختفي بعد التوقيع</h3>
+    <p>معاينة مجانية، عرض سعر واضح بلا مفاجآت، وتواصل مباشر مع فريق يفهم جدة ومناخها ومتطلبات البناء فيها. ابدأ اليوم برسالة واحدة — والباقي علينا.</p>
+    <div class="cta-band-btns">
+      <a href="https://wa.me/966549656262?text=السلام عليكم، أريد استشارة مجانية لمشروعي" class="btn-gold text-decoration-none" target="_blank"><i class="fab fa-whatsapp"></i> استشارة مجانية على واتساب</a>
+      <a href="#contact" class="btn-outline-gold text-decoration-none"><i class="fas fa-file-signature"></i> اطلب عرض سعر مفصّل</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT TYPES -->
+<section class="about-section" style="padding-top:0">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-handshake"></i> من نخدم</div>
+      <h2 class="section-title">نفتخر بخدمة <span class="gold">كل أنواع المشاريع</span> في جدة</h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:680px">سواء كنت صاحب منزل تبحث عن تجديد شامل، أو مطوّر عقاري، أو صاحب محل — لدينا الخبرة والفريق المناسب لحجم مشروعك وميزانيتك.</p>
+    </div>
+    <div class="client-grid reveal">
+      <div class="client-card">
+        <div class="cc-icon">🏡</div>
+        <h4>فلل وقصور سكنية</h4>
+        <p>دهانات فاخرة، عزل شامل، وأرضيات تليق بمستوى سكنك — من الداخل إلى الواجهة.</p>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🏢</div>
+        <h4>شقق ومباني سكنية</h4>
+        <p>تجديد سريع ومنظّم للشقق الجديدة والقديمة مع أقل قدر من الإزعاج لسكان المبنى.</p>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🏬</div>
+        <h4>محلات ومكاتب تجارية</h4>
+        <p>واجهات جذابة ودهانات مقاومة للاستخدام الكثيف — انطباع أول يبقى في ذاكرة عملائك.</p>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🕌</div>
+        <h4>مساجد ومرافق عامة</h4>
+        <p>أعمال دقيقة تحترم طبيعة المكان مع مواد آمنة ومتينة تلائم الاستخدام اليومي المكثف.</p>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🏨</div>
+        <h4>فنادق وشاليهات</h4>
+        <p>تشطيبات راقية وحمامات سباحة بعزل احترافي — لأن ضيوفك يستحقون الأفضل.</p>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🏗️</div>
+        <h4>مشاريع ضخمة ومجمعات</h4>
+        <p>تنسيق فرق متعددة، جداول زمنية محكمة، وتسليم مراحل دون تعطيل سير العمل.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-trophy"></i> لماذا تختارنا</div>
+      <h2 class="section-title">ما يجعلنا <span class="gold">الخيار الأول</span> دائماً</h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:680px">ليس السعر وحده ما يجعل العميل يعود — بل الشعور بأن من يعمل في بيته يهتم كما يهتم هو. هذه قيمنا التي نعيشها في كل موقع.</p>
+    </div>
+    <div class="values-strip mb-5 reveal">
+      <div class="value-pill">
+        <i class="fas fa-gem"></i>
+        <h4>الجودة أولاً</h4>
+        <p>لا نُقايض المتانة بالتوفير — لأن إعادة العمل أغلى من الاستثمار الصحيح من البداية.</p>
+      </div>
+      <div class="value-pill">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h4>الأمانة في التعامل</h4>
+        <p>ما نعد به في العرض هو ما تستلمه — بلا رسوم مخفية ولا «مفاجآت» عند التسليم.</p>
+      </div>
+      <div class="value-pill">
+        <i class="fas fa-broom"></i>
+        <h4>نظافة الموقع</h4>
+        <p>نغادر يومياً وموقعك مرتب — لأن احترام منزلك جزء من احترامنا لعملائنا.</p>
+      </div>
+      <div class="value-pill">
+        <i class="fas fa-comments"></i>
+        <h4>تواصل واضح</h4>
+        <p>تعرف ماذا يحدث اليوم وغداً — تحديثات صادقة من أول يوم عمل حتى التسليم.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-medal why-icon"></i>
+          <div class="why-title">جودة لا تُنافَس</div>
+          <div class="why-desc">مواد عالمية معتمدة وطرق تطبيق احترافية — لأن الجدار الجميل اليوم يجب أن يبقى جميلاً بعد عشر سنوات.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-user-tie why-icon"></i>
+          <div class="why-title">فريق محترف</div>
+          <div class="why-desc">كل أعضاء فريقنا معلمون ذوو خبرة لا تقل عن 10 سنوات في تخصصاتهم المختلفة.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-clock why-icon"></i>
+          <div class="why-title">الالتزام بالمواعيد</div>
+          <div class="why-desc">نحترم وقتك ونلتزم بالجداول الزمنية المتفق عليها دون تأخير أو تأجيل.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-wallet why-icon"></i>
+          <div class="why-title">أسعار تنافسية</div>
+          <div class="why-desc">عروض أسعار شفافة وعادلة دون أي رسوم مخفية مع إمكانية التفاوض والتقسيط.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-headset why-icon"></i>
+          <div class="why-title">دعم مستمر 24/7</div>
+          <div class="why-desc">متاحون دائماً للرد على استفساراتكم وحل أي مشكلة تطرأ في أي وقت من اليوم.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-shield-check why-icon"></i>
+          <div class="why-title">ضمان الأعمال</div>
+          <div class="why-desc">نقدم ضماناً موثقاً على جميع أعمالنا لمنحك الراحة والطمأنينة الكاملة.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-recycle why-icon"></i>
+          <div class="why-title">مواد صديقة للبيئة</div>
+          <div class="why-desc">نهتم باستخدام منتجات آمنة وصديقة للبيئة وغير ضارة بصحة الأسرة والأطفال.</div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3 reveal">
+        <div class="why-card">
+          <i class="fas fa-star why-icon"></i>
+          <div class="why-title">سمعة مشرّفة</div>
+          <div class="why-desc">أكثر من 500 مشروع ناجح وآلاف العملاء الراضين خير شاهد على جودة خدماتنا.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-images"></i> معرض أعمالنا</div>
+      <h2 class="section-title">مشاريعنا <span class="gold">المنجزة</span> تتحدث عنّا</h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:680px">كل صورة هنا قصة نجاح — فيلا، شقة، مبنى تجاري، أو حمام سباحة. اضغط على أي مشروع لتشاهده بالحجم الكامل، وتأكد بنفسك من مستوى الإتقان الذي نقدّمه لعملائنا في جدة.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- 57 cards generated by JS -->
+    </div>
+    <div class="gallery-intro-note reveal">
+      <p><strong>أكثر من 500 مشروع منجز</strong> — من دهان غرفة واحدة إلى تجديد فيلا كاملة وعزل أسطح ضخمة. معرضنا يتوسع باستمرار لأن ثقتكم تدفعنا للأفضل كل يوم. مشروعك القادم قد يكون التالي بين أعمالنا.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery lightbox -->
+<div class="modal fade gallery-lightbox" id="galleryLightbox" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content position-relative">
+      <button type="button" class="btn-close-lightbox" data-bs-dismiss="modal" aria-label="إغلاق">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body">
+        <img class="gallery-lightbox-img" id="galleryLightboxImg" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-project-diagram"></i> كيف نعمل</div>
+      <h2 class="section-title">خطوات <span class="gold">تنفيذ مشروعك</span> معنا</h2>
+      <div class="divider mx-auto"></div>
+    </div>
+    <div class="row g-4 position-relative">
+      <div class="process-line d-none d-lg-block"></div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="process-step">
+          <div class="step-circle" style="position:relative"><i class="fas fa-phone-alt"></i><span class="step-num">1</span></div>
+          <div class="step-title">التواصل</div>
+          <div class="step-desc">اتصل بنا أو أرسل رسالة واتساب لبدء استشارتك المجانية</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="process-step">
+          <div class="step-circle" style="position:relative"><i class="fas fa-clipboard-list"></i><span class="step-num">2</span></div>
+          <div class="step-title">المعاينة</div>
+          <div class="step-desc">نزيارة الموقع لفحصه ومعاينته وتحديد متطلبات المشروع بدقة</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="process-step">
+          <div class="step-circle" style="position:relative"><i class="fas fa-file-invoice-dollar"></i><span class="step-num">3</span></div>
+          <div class="step-title">العرض</div>
+          <div class="step-desc">نقدم لك عرض سعر مفصل وشفاف يتضمن كل التكاليف والمواد</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="process-step">
+          <div class="step-circle" style="position:relative"><i class="fas fa-handshake"></i><span class="step-num">4</span></div>
+          <div class="step-title">التعاقد</div>
+          <div class="step-desc">توقيع العقد وتحديد الجدول الزمني لتنفيذ المشروع</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="process-step">
+          <div class="step-circle" style="position:relative"><i class="fas fa-hard-hat"></i><span class="step-num">5</span></div>
+          <div class="step-title">التنفيذ</div>
+          <div class="step-desc">بدء العمل بفريق متكامل من المعلمين والفنيين المتخصصين</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="process-step">
+          <div class="step-circle" style="position:relative"><i class="fas fa-check-double"></i><span class="step-num">6</span></div>
+          <div class="step-title">التسليم</div>
+          <div class="step-desc">تسليم المشروع بعد فحص دقيق مع ضمان مكتوب على الأعمال</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5 reveal">
+      <p class="section-desc mx-auto" style="max-width:640px">من أول اتصال إلى آخر يوم عمل — مسار واضح، فريق محترف، وتسليم يليق باسمك. لا تعقيد، لا غموض.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-quote-right"></i> قالوا عنّا</div>
+      <h2 class="section-title">كلمات <span class="gold">عملائنا</span> أصدق من أي إعلان</h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:680px">نفتخر بكل تقييم وكل توصية — لأنها نتيجة عمل حقيقي في بيوت وشركات حقيقية في جدة.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">دهانوا فيلتنا بالكامل في وقت قياسي والنتيجة فاقت توقعاتنا. الفريق محترم، نظيف، وما تركوا أي فوضى. أنصح فيهم بقوة لكل من يبحث عن جودة حقيقية.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">م</div>
+            <div>
+              <div class="testimonial-name">أبو محمد — حي الروضة</div>
+              <div class="testimonial-role">تجديد فيلا سكنية</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">عزل سطح مبنى تجاري كان عندنا كابوس تسريبات — دعجم حلوا المشكلة من الجذور. عرض السعر كان واضح والتنفيذ مضبوط. من يومها ما رجعنا نشوف بقع مياه.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">س</div>
+            <div>
+              <div class="testimonial-name">م. سعد — صاحب عمارة</div>
+              <div class="testimonial-role">عزل أسطح وتجديد واجهة</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">حمام السباحة كان يحتاج عزل وإيبوكسي — شغل متخصص وما لقينا أحد يفهم المجال زيهم. الشكل النهائي فاخر والماء ما عاد يتسرب. شكراً لفريق دعجم.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ف</div>
+            <div>
+              <div class="testimonial-name">أ. فهد — شاليه بحري</div>
+              <div class="testimonial-role">عزل وإنهاء حمام سباحة</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">بلاط وبورسلان شقتنا الجديدة — تركيب دقيق بدون فواصل قبيحة. المعلم فاهم شغله واستشارنا في اختيار النوع المناسب للمطبخ والحمامات.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ن</div>
+            <div>
+              <div class="testimonial-name">أم نورة — حي الزهراء</div>
+              <div class="testimonial-role">أرضيات وبلاط</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">أبواب بيتنا القديمة صارت كأنها جديدة — وفّرنا تكلفة الاستبدال الكامل. الدهان مقاوم للخدش والرطوبة. خدمة سريعة وأسعار منطقية.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ع</div>
+            <div>
+              <div class="testimonial-name">عبدالله — حي الصفا</div>
+              <div class="testimonial-role">دهانات أبواب خشبية</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="testimonial-text">تعاملنا معهم في أكثر من مشروع — الدهانات، الجبس، والعزل. ثقة مبنية على سنوات: يلتزمون بالموعد، يشرحون كل خطوة، والضمان مكتوب مو مجرّد كلام.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">د</div>
+            <div>
+              <div class="testimonial-name">مؤسسة د. — مطوّر عقاري</div>
+              <div class="testimonial-role">شريك متكرر — مشاريع متعددة</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-users"></i> فريقنا</div>
+      <h2 class="section-title">أمهر <span class="gold">المعلمين والفنيين</span> في جدة</h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:600px">فريقنا هو قوتنا الحقيقية — معلمون وفنيون من خيرة الكفاءات المتخصصة بخبرات لا تقل عن عشر سنوات</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="team-card">
+          <div class="team-avatar">👷</div>
+          <div class="team-name">معلمو الدهانات الداخلية</div>
+          <div class="team-role">خبراء الدهانات الداخلية</div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:15px">فريق متكامل متخصص في جميع أنواع الدهانات الداخلية من بلاستيك وأكريليك وبوليور وكيميائيات متقدمة</p>
+          <div class="team-skills">
+            <span class="skill-tag">دهان بلاستيك</span>
+            <span class="skill-tag">أكريليك</span>
+            <span class="skill-tag">بوليور</span>
+            <span class="skill-tag">ملمسي</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="team-card">
+          <div class="team-avatar">🏗️</div>
+          <div class="team-name">معلمو الدهانات الخارجية</div>
+          <div class="team-role">متخصصو الواجهات</div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:15px">خبراء دهانات الواجهات بأحدث تقنيات مقاومة العوامل الجوية والأمطار والحرارة الشديدة في جدة</p>
+          <div class="team-skills">
+            <span class="skill-tag">واجهات</span>
+            <span class="skill-tag">مقاوم حرارة</span>
+            <span class="skill-tag">مضاد مياه</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="team-card">
+          <div class="team-avatar">🛡️</div>
+          <div class="team-name">معلمو العزل</div>
+          <div class="team-role">متخصصو العزل المائي والحراري</div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:15px">فريق العزل المتخصص في أسطح وحمامات وخزانات وحمامات سباحة بأحدث مواد البوليمر والإيبوكسي</p>
+          <div class="team-skills">
+            <span class="skill-tag">عزل حراري</span>
+            <span class="skill-tag">عزل مائي</span>
+            <span class="skill-tag">إيبوكسي</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="team-card">
+          <div class="team-avatar">🔨</div>
+          <div class="team-name">معلمو البلاط والأرضيات</div>
+          <div class="team-role">متخصصو التركيب والتشطيب</div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:15px">معلمون محترفون في تركيب جميع أنواع الأرضيات والبلاط بدقة ميلليمترية وتشطيب لا يُضاهى</p>
+          <div class="team-skills">
+            <span class="skill-tag">سيراميك</span>
+            <span class="skill-tag">بورسلان</span>
+            <span class="skill-tag">رخام</span>
+            <span class="skill-tag">باركيه</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="team-card">
+          <div class="team-avatar">🚪</div>
+          <div class="team-name">معلمو دهانات الأبواب</div>
+          <div class="team-role">متخصصو الأبواب والأخشاب</div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:15px">فريق نادر ومتخصص حصرياً في دهانات الأبواب بجميع أنواعها والتجديد الكامل للأبواب القديمة</p>
+          <div class="team-skills">
+            <span class="skill-tag">أبواب خشب</span>
+            <span class="skill-tag">أبواب حديد</span>
+            <span class="skill-tag">ألمنيوم</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="team-card">
+          <div class="team-avatar">🎨</div>
+          <div class="team-name">معلمو الديكور والجبس</div>
+          <div class="team-role">فنيو التشطيبات الفاخرة</div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:15px">فنيون مبدعون في الجبس المزخرف والديكورات الخاصة والأسقف المستعارة والتشطيبات الفاخرة</p>
+          <div class="team-skills">
+            <span class="skill-tag">جبس</span>
+            <span class="skill-tag">ديكور</span>
+            <span class="skill-tag">أسقف</span>
+            <span class="skill-tag">إضاءة</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="articles-section" id="articles">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-newspaper"></i> مقالات ونصائح</div>
+      <h2 class="section-title">دليلك الشامل لعالم <span class="gold">الدهانات والمقاولات</span></h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:600px">نشارككم خبراتنا ومعرفتنا المتراكمة عبر مقالات متخصصة تساعدكم في اتخاذ أفضل القرارات لمشاريعكم</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="article-card">
+          <div class="article-img"><i class="fas fa-paint-brush"></i><span class="article-cat">دهانات</span></div>
+          <div class="article-body">
+            <div class="article-meta"><span><i class="fas fa-calendar"></i> 15 يناير 2025</span><span><i class="fas fa-clock"></i> 5 دقائق قراءة</span></div>
+            <div class="article-title">كيف تختار اللون المناسب لغرف منزلك؟ دليل احترافي شامل</div>
+            <div class="article-excerpt">اختيار لون الجدران ليس مجرد قرار جمالي — إنه قرار يؤثر على مزاجك وإنتاجيتك وإحساسك بالمساحة. في هذا المقال، نكشف لك أسرار علم الألوان في التصميم الداخلي وكيف يستخدمها المحترفون لتحويل أي مساحة عادية إلى بيئة استثنائية. سنتحدث عن الألوان الدافئة والباردة، وتأثير كل منها على الإضاءة والمساحة، وأفضل التوليفات اللونية التي أثبتت جمالها في آلاف المنازل السعودية.</div>
+            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="article-card">
+          <div class="article-img"><i class="fas fa-shield-alt"></i><span class="article-cat">عزل</span></div>
+          <div class="article-body">
+            <div class="article-meta"><span><i class="fas fa-calendar"></i> 22 يناير 2025</span><span><i class="fas fa-clock"></i> 7 دقائق قراءة</span></div>
+            <div class="article-title">علامات التسريب في منزلك وكيف تتعامل معها قبل فوات الأوان</div>
+            <div class="article-excerpt">تسريبات المياه من أخطر المشكلات التي تواجه أصحاب المنازل في جدة، خاصة في موسم الأمطار. كثير من الناس لا يلاحظون التسريب إلا بعد أن يتفاقم الضرر ويصبح مكلفاً. في هذا المقال المتخصص، نعلمك كيف تكتشف علامات التسريب المبكرة قبل أن تتحول إلى كارثة، ونشرح لك الفرق بين أنواع العزل المختلفة وأيها الأنسب لكل موقع في منزلك، مع نصائح للصيانة الوقائية.</div>
+            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="article-card">
+          <div class="article-img"><i class="fas fa-th"></i><span class="article-cat">أرضيات</span></div>
+          <div class="article-body">
+            <div class="article-meta"><span><i class="fas fa-calendar"></i> 1 فبراير 2025</span><span><i class="fas fa-clock"></i> 6 دقائق قراءة</span></div>
+            <div class="article-title">البورسلان أم الرخام أم الباركيه؟ مقارنة شاملة تساعدك على اختيار أرضيتك</div>
+            <div class="article-excerpt">الأرضية هي الأساس الذي يربط تصميم منزلك بأكمله، والاختيار الخاطئ يمكن أن يكلفك ثروة في المستقبل. نقارن في هذا المقال المفصل بين أبرز ثلاثة أنواع من الأرضيات من حيث التكلفة، والمتانة، والجمال، وسهولة الصيانة، والملاءمة لمناخ جدة الحار والرطب. ستخرج من هذا المقال بقرار واثق ودراية كاملة بكل اختيار.</div>
+            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="article-card">
+          <div class="article-img"><i class="fas fa-door-open"></i><span class="article-cat">نصائح</span></div>
+          <div class="article-body">
+            <div class="article-meta"><span><i class="fas fa-calendar"></i> 10 فبراير 2025</span><span><i class="fas fa-clock"></i> 4 دقائق قراءة</span></div>
+            <div class="article-title">سر تجديد الأبواب القديمة: كيف تحولها إلى جديدة تماماً بنصف التكلفة</div>
+            <div class="article-excerpt">كثير من أصحاب المنازل يفكرون في استبدال أبوابهم القديمة بسبب الخدوش والبهتان، لكن هناك بديل أذكى وأوفر بكثير. في هذا المقال، نشرح لك تقنيات إحياء الأبواب التي يستخدمها خبراؤنا لتجديد الأبواب القديمة تجديداً كاملاً يجعلها تبدو كأنها خرجت من المصنع للتو، مع شرح مراحل العمل والمواد المستخدمة والوقت المطلوب.</div>
+            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="article-card">
+          <div class="article-img"><i class="fas fa-swimming-pool"></i><span class="article-cat">عزل</span></div>
+          <div class="article-body">
+            <div class="article-meta"><span><i class="fas fa-calendar"></i> 18 فبراير 2025</span><span><i class="fas fa-clock"></i> 8 دقائق قراءة</span></div>
+            <div class="article-title">كل ما تريد معرفته عن عزل وصيانة حمامات السباحة</div>
+            <div class="article-excerpt">حمام السباحة استثمار كبير يستحق الاهتمام والرعاية المثلى. في هذا الدليل الشامل نتحدث عن أنواع عزل حمامات السباحة، وأسباب ظهور التشققات والتسريبات، وكيفية اختيار المقاول المناسب، وأحدث مواد الإيبوكسي والبولي يوريا المستخدمة عالمياً، وكيف تعرف أن العمل تم بشكل صحيح. دليل لا غنى عنه لكل من لديه حمام سباحة أو يفكر في إنشاء واحد.</div>
+            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="article-card">
+          <div class="article-img"><i class="fas fa-ruler-combined"></i><span class="article-cat">تخطيط</span></div>
+          <div class="article-body">
+            <div class="article-meta"><span><i class="fas fa-calendar"></i> 1 مارس 2025</span><span><i class="fas fa-clock"></i> 6 دقائق قراءة</span></div>
+            <div class="article-title">كيف تخطط لمشروع تجديد منزلك؟ خطوات ذكية توفر عليك المال والوقت</div>
+            <div class="article-excerpt">تجديد المنزل يمكن أن يكون تجربة رائعة أو كابوساً لا ينتهي — والفارق هو التخطيط. في هذا المقال العملي نضع بين يديك خطة عمل محكمة لتجديد منزلك تشمل: ترتيب الأولويات، وكيفية وضع ميزانية واقعية، وأسرار الحصول على أفضل الأسعار من المقاولين، والأخطاء الشائعة التي يقع فيها معظم الناس وكيف تتجنبها. ستوفر بهذه النصائح آلاف الريالات وأشهراً من الإجهاد.</div>
+            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="section-badge"><i class="fas fa-envelope"></i> تواصل معنا</div>
+      <h2 class="section-title">نحن هنا من أجلك — <span class="gold">تواصل الآن</span></h2>
+      <div class="divider mx-auto"></div>
+      <p class="section-desc mx-auto" style="max-width:680px">خطوة واحدة تفصلك عن مشروع أحلامك — راسلنا الآن. نرد بسرعة، نحدد معاينة مجانية، ونقدّم عرض سعر يشرح كل بند بوضوح. لا التزام حتى ترى أننا الخيار المناسب لك.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-5 reveal-left">
+        <div class="contact-info-card">
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:25px;color:var(--accent)"><i class="fas fa-address-card me-2"></i>معلومات التواصل</h3>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <div class="contact-item-label">هاتف</div>
+              <div class="contact-item-val"><a href="tel:0537789199">0537789199</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <div class="contact-item-label">واتساب</div>
+              <div class="contact-item-val"><a href="https://wa.me/966549656262">0549656262</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact-item-label">البريد الإلكتروني</div>
+              <div class="contact-item-val"><a href="mailto:alsydmwsy187@gmail.com">alsydmwsy187@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="contact-item-label">العنوان</div>
+              <div class="contact-item-val">جدة - حي الصفا - طريق الأمير متعب - أمانة محافظة جدة</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-id-card"></i></div>
+            <div>
+              <div class="contact-item-label">السجل التجاري</div>
+              <div class="contact-item-val">4030140651</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-receipt"></i></div>
+            <div>
+              <div class="contact-item-label">الرقم الضريبي</div>
+              <div class="contact-item-val" style="font-size:0.85rem">300-2998791-003</div>
+            </div>
+          </div>
+          <a href="https://wa.me/966549656262?text=السلام عليكم، أريد الاستفسار عن خدماتكم" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp fa-lg"></i> تواصل عبر واتساب مباشرة
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal-right">
+        <div class="form-card">
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:25px;color:var(--accent)"><i class="fas fa-paper-plane me-2"></i>أرسل استفسارك أو طلب عرض السعر</h3>
+          <div id="formSuccess" style="display:none;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.3);border-radius:12px;padding:20px;margin-bottom:20px;text-align:center">
+            <i class="fas fa-check-circle fa-2x" style="color:#25D366;margin-bottom:10px"></i>
+            <div style="font-weight:700;font-size:1rem">تم إرسال طلبك بنجاح!</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);margin-top:5px">سيتواصل معك فريقنا في أقرب وقت ممكن</div>
+          </div>
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">الاسم الكامل *</label>
+                <input type="text" class="form-control" id="fname" placeholder="أدخل اسمك الكامل" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">رقم الجوال *</label>
+                <input type="tel" class="form-control" id="fphone" placeholder="05xxxxxxxx" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">البريد الإلكتروني</label>
+                <input type="email" class="form-control" id="femail" placeholder="example@email.com">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">نوع الخدمة المطلوبة *</label>
+                <select class="form-select" id="fservice" required>
+                  <option value="">اختر الخدمة</option>
+                  <option>دهانات داخلية</option>
+                  <option>دهانات خارجية</option>
+                  <option>عزل أسطح</option>
+                  <option>عزل حمامات وخزانات</option>
+                  <option>عزل حمامات سباحة</option>
+                  <option>تركيب بلاط وأرضيات</option>
+                  <option>دهانات أبواب</option>
+                  <option>أعمال جبس وديكور</option>
+                  <option>أكثر من خدمة</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">المدينة / الحي</label>
+                <input type="text" class="form-control" id="fcity" placeholder="مثال: جدة - حي الروضة">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">الميزانية التقريبية</label>
+                <select class="form-select" id="fbudget">
+                  <option value="">اختر الميزانية</option>
+                  <option>أقل من 5,000 ريال</option>
+                  <option>5,000 - 15,000 ريال</option>
+                  <option>15,000 - 30,000 ريال</option>
+                  <option>30,000 - 60,000 ريال</option>
+                  <option>أكثر من 60,000 ريال</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">تفاصيل المشروع *</label>
+                <textarea class="form-control" id="fmsg" rows="5" placeholder="اشرح لنا تفاصيل مشروعك — نوع الأعمال المطلوبة، المساحة التقريبية، أي متطلبات خاصة..." required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-submit">
+                  <i class="fas fa-paper-plane"></i> إرسال الطلب والحصول على عرض سعر مجاني
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-band" style="background:linear-gradient(180deg, var(--darker) 0%, var(--primary) 100%)">
+  <div class="container reveal">
+    <h3>جاهز تبدأ؟ <span class="gold">مشروعك ينتظرك</span> — ونحن جاهزون</h3>
+    <p>لا تؤجل تجديد منزلك أو إصلاح التسريب — كل يوم تأخير قد يكلفك أكثر. تواصل الآن واحصل على استشارة مجانية وعرض سعر يناسب ميزانيتك.</p>
+    <div class="cta-band-btns">
+      <a href="tel:0537789199" class="btn-gold text-decoration-none"><i class="fas fa-phone-alt"></i> اتصل الآن: 0537789199</a>
+      <a href="https://wa.me/966549656262?text=السلام عليكم، أريد البدء بمشروعي" class="btn-outline-gold text-decoration-none" target="_blank"><i class="fab fa-whatsapp"></i> واتساب: 0549656262</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:15px">
+            <div style="width:50px;height:50px;background:var(--gradient-accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--dark)">🏗️</div>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem">مؤسسة عبدالوهاب بن معيض بن دعجم</div>
+              <div style="font-size:0.7rem;color:var(--accent)">للمقاولات والدهانات - جدة</div>
+            </div>
+          </div>
+        </div>
+        <p class="footer-desc">مؤسسة عبدالوهاب بن معيض بن دعجم — حيث تلتقي الحرفة السعودية بمعايير عالمية. من الدهان إلى العزل إلى الأرضيات، نبني ثقةً تدوم مع كل عميل في جدة. شريكك في كل مشروع، كبيراً كان أو صغيراً.</p>
+        <div class="social-links mt-3">
+          <a href="https://wa.me/966549656262" class="social-link" title="واتساب"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:alsydmwsy187@gmail.com" class="social-link" title="إيميل"><i class="fas fa-envelope"></i></a>
+          <a href="tel:0537789199" class="social-link" title="اتصال"><i class="fas fa-phone-alt"></i></a>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-2">
+        <div class="footer-title">روابط سريعة</div>
+        <ul class="footer-links">
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#about">من نحن</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#gallery">أعمالنا</a></li>
+          <li><a href="#team">فريقنا</a></li>
+          <li><a href="#articles">المقالات</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="footer-title">خدماتنا</div>
+        <ul class="footer-links">
+          <li><a href="#services">الدهانات الداخلية والخارجية</a></li>
+          <li><a href="#services">عزل الأسطح</a></li>
+          <li><a href="#services">عزل الحمامات والخزانات</a></li>
+          <li><a href="#services">حمامات السباحة</a></li>
+          <li><a href="#services">البلاط والأرضيات</a></li>
+          <li><a href="#services">دهانات الأبواب</a></li>
+          <li><a href="#services">الجبس والديكور</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="footer-title">معلومات التواصل</div>
+        <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:0537789199" style="color:var(--text-muted);text-decoration:none">0537789199 (اتصال)</a></div>
+        <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/966549656262" style="color:var(--text-muted);text-decoration:none">0549656262 (واتساب)</a></div>
+        <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:alsydmwsy187@gmail.com" style="color:var(--text-muted);text-decoration:none;font-size:0.8rem">alsydmwsy187@gmail.com</a></div>
+        <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i>جدة - حي الصفا - طريق الأمير متعب</div>
+        <div class="footer-contact-item"><i class="fas fa-id-card"></i>س.ت: 4030140651</div>
+        <div class="footer-contact-item" style="font-size:0.75rem"><i class="fas fa-receipt"></i>ضريبة: 300-2998791-003</div>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div class="copyright">© 2025 مؤسسة عبدالوهاب بن معيض بن دعجم للمقاولات — جميع الحقوق محفوظة</div>
+      <div style="font-size:0.75rem;color:var(--text-muted)">جدة، المملكة العربية السعودية 🇸🇦</div>
+    </div>
+    <div class="footer-credit">
+      تم التصميم بواسطة <a href="https://www.facebook.com/profile.php?id=100090592885243&locale=ar_AR" target="_blank" rel="noopener noreferrer">GMTWEB</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Buttons -->
+<a href="https://wa.me/966549656262?text=السلام عليكم، أريد الاستفسار عن خدماتكم" class="wa-float" target="_blank" title="واتساب">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="للأعلى">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+// ===== PRELOADER =====
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('hidden');
+  }, 2200);
+});
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  const backTop = document.getElementById('backTop');
+  if (window.scrollY > 80) {
+    nav.classList.add('scrolled');
+    backTop.classList.add('show');
+  } else {
+    nav.classList.remove('scrolled');
+    backTop.classList.remove('show');
+  }
+});
+
+// ===== REVEAL ON SCROLL =====
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// ===== COUNTER ANIMATION =====
+const counters = document.querySelectorAll('.number[data-target]');
+const cObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = +el.dataset.target;
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { el.textContent = target + '+'; clearInterval(timer); }
+        else { el.textContent = Math.floor(current); }
+      }, 30);
+      cObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => cObserver.observe(c));
+
+// ===== GALLERY DATA =====
+const galleryData = [
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'دهان داخلي - فيلا الروضة' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'دهان بلاستيك فاخر' },
+  { cat: 'isolation', label: 'عزل', icon: '🛡️', name: 'عزل سطح مبنى تجاري' },
+  { cat: 'flooring', label: 'أرضيات', icon: '⬛', name: 'بورسلان فاخر - شقة الزهراء' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'تجديد أبواب خشبية كاملة' },
+  { cat: 'pool', label: 'سباحة', icon: '🏊', name: 'عزل حمام سباحة خاص' },
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'دهان واجهة فيلا' },
+  { cat: 'flooring', label: 'أرضيات', icon: '🔲', name: 'رخام طبيعي - مجلس كبير' },
+  { cat: 'isolation', label: 'عزل', icon: '💧', name: 'عزل خزان مياه' },
+  { cat: 'painting', label: 'دهانات', icon: '✨', name: 'دهان ملمسي مميز' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'دهان أبواب حديد' },
+  { cat: 'flooring', label: 'أرضيات', icon: '▪️', name: 'سيراميك حمام فاخر' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'دهان بندقي - غرفة رئيسية' },
+  { cat: 'isolation', label: 'عزل', icon: '🔰', name: 'عزل حمامات فيلا كاملة' },
+  { cat: 'pool', label: 'سباحة', icon: '🏊', name: 'إيبوكسي حمام سباحة تجاري' },
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'دهان مكتب تجاري' },
+  { cat: 'flooring', label: 'أرضيات', icon: '⬜', name: 'باركيه - غرف نوم فاخرة' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'دهان أكريليك خارجي' },
+  { cat: 'isolation', label: 'عزل', icon: '🛡️', name: 'عزل سطح مسجد' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'طلاء أبواب ألمنيوم' },
+  { cat: 'painting', label: 'دهانات', icon: '✨', name: 'دهان غرف أطفال ملونة' },
+  { cat: 'flooring', label: 'أرضيات', icon: '🔲', name: 'تركيب بلاط خارجي' },
+  { cat: 'pool', label: 'سباحة', icon: '🏊', name: 'ترميم وعزل حمام سباحة' },
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'واجهة عمارة سكنية' },
+  { cat: 'isolation', label: 'عزل', icon: '💧', name: 'عزل مائي شامل' },
+  { cat: 'flooring', label: 'أرضيات', icon: '▪️', name: 'تشطيب أرضيات فاخرة' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'دهان صالة كبيرة' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'تلميع وطلاء باب رئيسي' },
+  { cat: 'isolation', label: 'عزل', icon: '🔰', name: 'معالجة تشققات وعزل' },
+  { cat: 'painting', label: 'دهانات', icon: '✨', name: 'دهانات شقة سكنية كاملة' },
+  { cat: 'flooring', label: 'أرضيات', icon: '⬛', name: 'بلاط مطبخ حديث' },
+  { cat: 'pool', label: 'سباحة', icon: '🏊', name: 'تشطيب حمام سباحة جديد' },
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'دهان مستودع تجاري' },
+  { cat: 'isolation', label: 'عزل', icon: '🛡️', name: 'عزل سطح مستشفى' },
+  { cat: 'flooring', label: 'أرضيات', icon: '⬜', name: 'أرضية مطعم فاخر' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'رسم جداري خاص' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'أبواب شاليه كاملة' },
+  { cat: 'isolation', label: 'عزل', icon: '💧', name: 'عزل حمامات مدرسة' },
+  { cat: 'painting', label: 'دهانات', icon: '✨', name: 'دهان بوليور حديث' },
+  { cat: 'flooring', label: 'أرضيات', icon: '🔲', name: 'بورسلان مول تجاري' },
+  { cat: 'pool', label: 'سباحة', icon: '🏊', name: 'دهان وعزل برك أسماك' },
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'واجهة فندق صغير' },
+  { cat: 'isolation', label: 'عزل', icon: '🔰', name: 'عزل بوليمر متقدم' },
+  { cat: 'flooring', label: 'أرضيات', icon: '▪️', name: 'رخام درج فيلا فاخرة' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'دهانات خارجية فيلا' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'تجديد شامل لأبواب مجمع' },
+  { cat: 'painting', label: 'دهانات', icon: '✨', name: 'دهان مسجد شامل' },
+  { cat: 'isolation', label: 'عزل', icon: '🛡️', name: 'عزل سطح عمارة تجارية' },
+  { cat: 'flooring', label: 'أرضيات', icon: '⬜', name: 'أرضيات أبيض بورسلان' },
+  { cat: 'painting', label: 'دهانات', icon: '🎨', name: 'دهان مشروع ضخم' },
+  { cat: 'pool', label: 'سباحة', icon: '🏊', name: 'إنشاء وعزل مسبح فندق' },
+  { cat: 'flooring', label: 'أرضيات', icon: '🔲', name: 'تركيب موزاييك فاخر' },
+  { cat: 'painting', label: 'دهانات', icon: '🖌️', name: 'تجديد شامل - فيلا الشاطئ' },
+  { cat: 'isolation', label: 'عزل', icon: '💧', name: 'عزل مدرسة حكومية' },
+  { cat: 'doors', label: 'أبواب', icon: '🚪', name: 'دهانات أبواب فندق' },
+  { cat: 'painting', label: 'دهانات', icon: '✨', name: 'دهان ديكوري خاص' },
+  { cat: 'flooring', label: 'أرضيات', icon: '⬛', name: 'بلاط خارجي - مجمع تجاري' },
+];
+
+const galleryLightboxEl = document.getElementById('galleryLightbox');
+const galleryLightboxImg = document.getElementById('galleryLightboxImg');
+const galleryLightboxModal = galleryLightboxEl ? new bootstrap.Modal(galleryLightboxEl) : null;
+
+function openGalleryLightbox(src, alt) {
+  if (!galleryLightboxModal || !src) return;
+  galleryLightboxImg.src = src;
+  galleryLightboxImg.alt = alt || '';
+  galleryLightboxModal.show();
+}
+
+function buildGallery() {
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = '';
+  galleryData.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'gallery-card';
+    card.dataset.cat = item.cat;
+    const imgSrc = `Css/${i + 1}.jpeg`;
+    card.innerHTML = `
+      <div class="gallery-img">
+        <img src="${imgSrc}" alt="${item.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-img-placeholder" style="display:none">${item.icon}</div>
+        <div class="gallery-overlay">
+          <span class="gallery-zoom-icon" aria-hidden="true"><i class="fas fa-search-plus"></i></span>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      const img = card.querySelector('.gallery-img img');
+      if (img && img.style.display !== 'none' && img.src) {
+        openGalleryLightbox(img.src, img.alt);
+      }
+    });
+    grid.appendChild(card);
+  });
+}
+
+buildGallery();
+
+// ===== CONTACT FORM =====
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const service = document.getElementById('fservice').value;
+  const msg = document.getElementById('fmsg').value.trim();
+  if (!name || !phone || !service || !msg) {
+    alert('يرجى ملء جميع الحقول المطلوبة (*)');
+    return;
+  }
+  const email = document.getElementById('femail').value.trim();
+  const city = document.getElementById('fcity').value.trim();
+  const budget = document.getElementById('fbudget').value;
+  const waMsg = encodeURIComponent(
+    `*طلب جديد من موقع دعجم للمقاولات*\n\n` +
+    `👤 *الاسم:* ${name}\n` +
+    `📞 *الجوال:* ${phone}\n` +
+    `${email ? `📧 *الإيميل:* ${email}\n` : ''}` +
+    `🔧 *الخدمة:* ${service}\n` +
+    `${city ? `📍 *الموقع:* ${city}\n` : ''}` +
+    `${budget ? `💰 *الميزانية:* ${budget}\n` : ''}` +
+    `\n📝 *التفاصيل:*\n${msg}`
+  );
+  window.open(`https://wa.me/966549656262?text=${waMsg}`, '_blank');
+  document.getElementById('formSuccess').style.display = 'block';
+  this.reset();
+  setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 5000);
+});
+
+// ===== ACTIVE NAV LINK =====
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
