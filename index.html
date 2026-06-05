@@ -39,6 +39,7 @@ body {
   direction: rtl;
 }
 
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--darker); }
@@ -882,6 +883,90 @@ footer {
   .process-line { display: none; }
   footer .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
 }
+/* ===== MOBILE FIX ===== */
+
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+@media (max-width: 576px) {
+
+  .navbar { padding: 10px 15px; }
+  .navbar .container { padding: 0 10px; flex-wrap: nowrap; }
+  .brand-name { font-size: 0.72rem; }
+  .brand-sub { font-size: 0.58rem; }
+  .brand-icon { width: 38px; height: 38px; font-size: 1.1rem; flex-shrink: 0; }
+
+  .ticker-section { margin-top: 60px !important; }
+
+  .hero { padding-top: 80px !important; min-height: auto; }
+  .hero-title { font-size: 1.6rem !important; }
+  .hero-subtitle { font-size: 0.88rem; }
+  .hero-stats { gap: 15px; }
+  .hero-stat .num { font-size: 1.8rem; }
+  .hero-btns { flex-direction: column; }
+  .btn-gold, .btn-outline-gold { width: 100%; justify-content: center; font-size: 0.9rem; padding: 12px 20px; }
+  .hero-image-side { display: none; }
+  .floating-card { display: none; }
+
+  section { padding: 60px 0; }
+  .section-title { font-size: 1.5rem !important; }
+
+  .about-main-img { height: 250px; }
+  .about-badge-float { bottom: -10px; right: -5px; padding: 12px 16px; }
+
+  .stat-box .number { font-size: 2.5rem !important; }
+
+  .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+  .gallery-img { height: 140px; }
+
+  .form-card { padding: 20px; }
+  .contact-info-card { padding: 20px; }
+
+  .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+  .social-links { justify-content: center; }
+
+  .cta-band-btns { flex-direction: column; align-items: center; }
+  .cta-band-btns .btn-gold,
+  .cta-band-btns .btn-outline-gold { width: 100%; max-width: 320px; justify-content: center; }
+
+  .promise-quote { font-size: 1rem; }
+  .step-circle { width: 60px; height: 60px; font-size: 1.2rem; }
+
+  .values-strip { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .value-pill { padding: 20px 14px; }
+
+  .client-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .client-card { padding: 18px 12px; }
+
+  .team-avatar { width: 70px; height: 70px; font-size: 1.6rem; }
+  .testimonial-card { padding: 20px; }
+
+  #backTop { bottom: 20px; left: 15px; width: 42px; height: 42px; }
+  .wa-float { bottom: 20px; right: 15px; width: 50px; height: 50px; font-size: 1.4rem; border-radius: 12px; }
+
+  .navbar-collapse {
+    background: rgba(8,17,30,0.98);
+    border: 1px solid rgba(200,169,110,0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+  }
+  .nav-cta { margin-top: 10px; display: flex !important; justify-content: center; }
+
+  .gallery-lightbox .modal-dialog { margin: 0.5rem; }
+  .gallery-lightbox-img { max-height: 70vh; }
+}
+
+@media (max-width: 375px) {
+  .hero-title { font-size: 1.35rem !important; }
+  .gallery-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .gallery-img { height: 120px; }
+  .values-strip { grid-template-columns: 1fr; }
+  .client-grid { grid-template-columns: 1fr; }
+  .brand-name { font-size: 0.65rem; }
+}
 </style>
 </head>
 <body>
@@ -1629,7 +1714,6 @@ footer {
             <div class="article-meta"><span><i class="fas fa-calendar"></i> 15 يناير 2025</span><span><i class="fas fa-clock"></i> 5 دقائق قراءة</span></div>
             <div class="article-title">كيف تختار اللون المناسب لغرف منزلك؟ دليل احترافي شامل</div>
             <div class="article-excerpt">اختيار لون الجدران ليس مجرد قرار جمالي — إنه قرار يؤثر على مزاجك وإنتاجيتك وإحساسك بالمساحة. في هذا المقال، نكشف لك أسرار علم الألوان في التصميم الداخلي وكيف يستخدمها المحترفون لتحويل أي مساحة عادية إلى بيئة استثنائية. سنتحدث عن الألوان الدافئة والباردة، وتأثير كل منها على الإضاءة والمساحة، وأفضل التوليفات اللونية التي أثبتت جمالها في آلاف المنازل السعودية.</div>
-            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -1640,7 +1724,6 @@ footer {
             <div class="article-meta"><span><i class="fas fa-calendar"></i> 22 يناير 2025</span><span><i class="fas fa-clock"></i> 7 دقائق قراءة</span></div>
             <div class="article-title">علامات التسريب في منزلك وكيف تتعامل معها قبل فوات الأوان</div>
             <div class="article-excerpt">تسريبات المياه من أخطر المشكلات التي تواجه أصحاب المنازل في جدة، خاصة في موسم الأمطار. كثير من الناس لا يلاحظون التسريب إلا بعد أن يتفاقم الضرر ويصبح مكلفاً. في هذا المقال المتخصص، نعلمك كيف تكتشف علامات التسريب المبكرة قبل أن تتحول إلى كارثة، ونشرح لك الفرق بين أنواع العزل المختلفة وأيها الأنسب لكل موقع في منزلك، مع نصائح للصيانة الوقائية.</div>
-            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -1651,7 +1734,6 @@ footer {
             <div class="article-meta"><span><i class="fas fa-calendar"></i> 1 فبراير 2025</span><span><i class="fas fa-clock"></i> 6 دقائق قراءة</span></div>
             <div class="article-title">البورسلان أم الرخام أم الباركيه؟ مقارنة شاملة تساعدك على اختيار أرضيتك</div>
             <div class="article-excerpt">الأرضية هي الأساس الذي يربط تصميم منزلك بأكمله، والاختيار الخاطئ يمكن أن يكلفك ثروة في المستقبل. نقارن في هذا المقال المفصل بين أبرز ثلاثة أنواع من الأرضيات من حيث التكلفة، والمتانة، والجمال، وسهولة الصيانة، والملاءمة لمناخ جدة الحار والرطب. ستخرج من هذا المقال بقرار واثق ودراية كاملة بكل اختيار.</div>
-            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -1662,7 +1744,6 @@ footer {
             <div class="article-meta"><span><i class="fas fa-calendar"></i> 10 فبراير 2025</span><span><i class="fas fa-clock"></i> 4 دقائق قراءة</span></div>
             <div class="article-title">سر تجديد الأبواب القديمة: كيف تحولها إلى جديدة تماماً بنصف التكلفة</div>
             <div class="article-excerpt">كثير من أصحاب المنازل يفكرون في استبدال أبوابهم القديمة بسبب الخدوش والبهتان، لكن هناك بديل أذكى وأوفر بكثير. في هذا المقال، نشرح لك تقنيات إحياء الأبواب التي يستخدمها خبراؤنا لتجديد الأبواب القديمة تجديداً كاملاً يجعلها تبدو كأنها خرجت من المصنع للتو، مع شرح مراحل العمل والمواد المستخدمة والوقت المطلوب.</div>
-            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -1673,7 +1754,6 @@ footer {
             <div class="article-meta"><span><i class="fas fa-calendar"></i> 18 فبراير 2025</span><span><i class="fas fa-clock"></i> 8 دقائق قراءة</span></div>
             <div class="article-title">كل ما تريد معرفته عن عزل وصيانة حمامات السباحة</div>
             <div class="article-excerpt">حمام السباحة استثمار كبير يستحق الاهتمام والرعاية المثلى. في هذا الدليل الشامل نتحدث عن أنواع عزل حمامات السباحة، وأسباب ظهور التشققات والتسريبات، وكيفية اختيار المقاول المناسب، وأحدث مواد الإيبوكسي والبولي يوريا المستخدمة عالمياً، وكيف تعرف أن العمل تم بشكل صحيح. دليل لا غنى عنه لكل من لديه حمام سباحة أو يفكر في إنشاء واحد.</div>
-            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -1684,7 +1764,6 @@ footer {
             <div class="article-meta"><span><i class="fas fa-calendar"></i> 1 مارس 2025</span><span><i class="fas fa-clock"></i> 6 دقائق قراءة</span></div>
             <div class="article-title">كيف تخطط لمشروع تجديد منزلك؟ خطوات ذكية توفر عليك المال والوقت</div>
             <div class="article-excerpt">تجديد المنزل يمكن أن يكون تجربة رائعة أو كابوساً لا ينتهي — والفارق هو التخطيط. في هذا المقال العملي نضع بين يديك خطة عمل محكمة لتجديد منزلك تشمل: ترتيب الأولويات، وكيفية وضع ميزانية واقعية، وأسرار الحصول على أفضل الأسعار من المقاولين، والأخطاء الشائعة التي يقع فيها معظم الناس وكيف تتجنبها. ستوفر بهذه النصائح آلاف الريالات وأشهراً من الإجهاد.</div>
-            <a href="#" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
